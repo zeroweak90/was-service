@@ -51,9 +51,13 @@ You can then access petclinic here: [http://localhost:8080/petclinic](http://loc
 
 ### 외부에 구성한 MySQL Database 연결 방법
 
-MySQL database 접속 설정을 하기 위해, pom.xml 파일에 정의 된 'MySQL' profile 을 아래와 같이 수정후, 재배포(redeploy)한다.
+MySQL 을 각 CSP 의 DB Service 로 구성
+  - database 명 : petclinic  
+  - db user 및 password 설정
 
-jdbc.url 부분에 정의되어 있는 DNS 또는 IP Address 를 연결하고자 하는 MySQL IP 로 변경한다.
+MySQL database 접속 설정을 하기 위해, pom.xml 파일에 정의 된 'MySQL' profile 을 아래와 같이 수정후, 재배포(redeploy)한다.
+  - jdbc.url 부분에 정의되어 있는 DNS 또는 IP Address 를 연결하고자 하는 MySQL IP 로 변경한다. ( 필요시 database 도 수정)
+  - db 접속 User ID 및 Password 수정
 
 ```
 <properties>
