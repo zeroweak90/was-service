@@ -33,7 +33,7 @@
         <wro4j.version>1.8.0</wro4j.version> <!-- wro4j 1.0.0 requires Java 9 -->
 
         <!-- Java EE / Java SE dependencies -->
-        <tomcat.version>9.0.46</tomcat.version>
+        <tomcat.version>9.0.53</tomcat.version>
         <jaxb-api.version>2.3.1</jaxb-api.version>
         <jaxb-runtime.version>2.3.4</jaxb-runtime.version>
         <javax-activation.version>1.2.0</javax-activation.version>
@@ -317,6 +317,19 @@
                 <version>${maven-compiler-plugin.version}</version>
             </plugin>
 
+	    <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>TomcatServer</server>
+                    <path>/${project.build.finalName}</path>
+                    <username>tomcat</username>
+                    <password>tomcat</password>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -511,8 +524,8 @@
                 <db.script>mysql</db.script>
                 <jpa.database>MYSQL</jpa.database>
                 <jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
-                <jdbc.url>jdbc:mysql://localhost:3306/petclinic?useUnicode=true</jdbc.url>
-                <jdbc.username>petclinic</jdbc.username>
+                <jdbc.url>jdbc:mysql://34.64.175.153:3306/petclinic?useUnicode=true</jdbc.url>
+                <jdbc.username>root</jdbc.username>
                 <jdbc.password>petclinic</jdbc.password>
             </properties>
             <dependencies>
