@@ -5,7 +5,9 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=spring-petclinic_spring-framework-petclinic&metric=coverage)](https://sonarcloud.io/dashboard?id=spring-petclinic_spring-framework-petclinic)
 
 BTC Cloud 교육 중간 과제 수행을 위한 Java String 으로 개발된 Sample Application 입니다. 
- **3-layer architecture** (i.e. presentation --> service --> repository).
+
+**3-layer architecture** (i.e. presentation --> service --> repository) 로 Tomcat 에 배포하여 2 Tier 로 구성하거나
+또는 nginx 등의 Web 서버를 통해서 Tomcat 을 연결하는 3 Tier 구성을 테스트할 수 있습니다. 
 
 ## Understanding the Spring Petclinic application with a few diagrams
 
@@ -17,7 +19,9 @@ BTC Cloud 교육 중간 과제 수행을 위한 Java String 으로 개발된 Sam
 Tomcat 설치 가이드를 참조하여 Tomcat 설치 후, tomcat-users.xml 에 User 및 Role 추가
 
 [ Ubuntu 18.04 : Tomcat 9 설치하는 방법 ](https://jjeongil.tistory.com/1351)
-     
+
+Tomcat User 및 Role 추가
+
 ```
 # $TOMCAT_HOME/conf/tomcat-users.xml 파일에 아래 행들을 추가
 
@@ -28,13 +32,13 @@ Tomcat 설치 가이드를 참조하여 Tomcat 설치 후, tomcat-users.xml 에 
     <user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-status,manager-jmx"/>
 ```
 
-Tomcat 을 실행
+Tomcat 을 실행 ( 위의 Tomcat 설치 가이드를 통해서 이미 실행되어 있는 경우에는 Skip )
 
 ```
 $TOMCAT_HOME/bin/catalina.sh start
 ```
 
-### Tomcat 배포 ( With Maven command line, H2 In-memory Database 활용 )
+### Tomcat 배포 ( H2 In-memory Database 활용 )
 ```
 git clone https://github.com/SteveKimbespin/petclinic_btc.git 
 cd petclinic_btc
@@ -45,7 +49,7 @@ You can then access petclinic here: [http://localhost:8080/petclinic](http://loc
 
 <img width="1042" alt="petclinic-screenshot" src="https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png">
 
-## 외부에 구성한 MySQL Database 연결 방법
+### 외부에 구성한 MySQL Database 연결 방법
 
 MySQL database 접속 설정을 하기 위해, pom.xml 파일에 정의 된 'MySQL' profile 을 아래와 같이 수정후, 재배포(redeploy)한다.
 
