@@ -4,11 +4,8 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=spring-petclinic_spring-framework-petclinic&metric=alert_status)](https://sonarcloud.io/dashboard?id=spring-petclinic_spring-framework-petclinic)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=spring-petclinic_spring-framework-petclinic&metric=coverage)](https://sonarcloud.io/dashboard?id=spring-petclinic_spring-framework-petclinic)
 
-Approved by the Spring team, this repo is a fork of the [spring-projects/spring-petclinic](https://github.com/spring-projects/spring-petclinic).
-It allows the Spring community to maintain a Petclinic version with a plain old **Spring Framework configuration**
-and with a **3-layer architecture** (i.e. presentation --> service --> repository).
-The "canonical" implementation is now based on Spring Boot, Thymeleaf and [aggregate-oriented domain]([https://github.com/spring-projects/spring-petclinic/pull/200). 
-
+BTC Cloud 교육 중간 과제 수행을 위한 Java String 으로 개발된 Sample Application 입니다. 
+ **3-layer architecture** (i.e. presentation --> service --> repository).
 
 ## Understanding the Spring Petclinic application with a few diagrams
 
@@ -17,10 +14,11 @@ The "canonical" implementation is now based on Spring Boot, Thymeleaf and [aggre
 ## Running petclinic locally
 
 ### Tomcat 설치 및 Start
-가이드에 따라서 Tomcat 설치 후, tomcat-users.xml 에 User 및 Role 추가
+Tomcat 설치 가이드를 참조하여 Tomcat 설치 후, tomcat-users.xml 에 User 및 Role 추가
+[ Ubuntu 18.04 : Tomcat 9 설치하는 방법 ](https://jjeongil.tistory.com/1351)
      
 ```
-# $TOMCAT_HOME/conf/tomcat-users.xml 파일 수정
+# $TOMCAT_HOME/conf/tomcat-users.xml 파일에 아래 행들을 추가
 
     <role rolename="manager-script"/>
     <role rolename="manager-gui"/>
@@ -29,14 +27,17 @@ The "canonical" implementation is now based on Spring Boot, Thymeleaf and [aggre
     <user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-status,manager-jmx"/>
 ```
 
+Tomcat 을 실행
 
+```
+$TOMCAT_HOME/bin/catalina.sh start
+```
 
-### With Maven command line
+### Tomcat 배포 ( With Maven command line )
 ```
 git clone https://github.com/SteveKimbespin/petclinic_btc.git 
 cd petclinic_btc
 ./mvnw tomcat7:deploy
-# For Windows : ./mvnw.cmd jetty:run-war
 ```
 
 You can then access petclinic here: [http://localhost:8080/](http://localhost:8080/)
