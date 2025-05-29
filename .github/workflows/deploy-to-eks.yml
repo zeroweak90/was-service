@@ -1,0 +1,41 @@
+name: Build and Push to ECR
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  AWS_REGION: ap-northeast-2
+  ECR_REPOSITORY: petclinic_btc
+  IMAGE_TAG: latest
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        role-to-assume: arn:aws:iam::554304941374:role/eks-github-test2
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build Docker image
+      run: |
+        docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
+        docker tag $ECR_REPOSITORY:$IMAGE_TAG ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:$IMAGE_TAG
+
+    - name: Push to Amazon ECR
+      run: |
+        docker push ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:$IMAGE_TAG
