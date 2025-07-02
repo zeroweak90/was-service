@@ -5,4 +5,4 @@ resources:
   - tomcat-service.yaml
 images:
   - name: 554304941374.dkr.ecr.ap-northeast-2.amazonaws.com/petclinic_btc
-    newTag: b697f0ab9d01cb6f4a9bd5bccc3919d0808911aa
+    newTag: 910e9bb6109637cdfbee4bdfa029460ddab68735
