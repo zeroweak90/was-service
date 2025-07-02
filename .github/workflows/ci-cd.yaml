@@ -2,7 +2,10 @@ name: Build, Push to ECR and Update GitOps Manifest
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [main]
+    paths:
+      - 'src/**'               # ← 앱 코드만 감지
+      - '!base/kustomization.yaml'  # ← 이 파일 수정 시엔 무시
 
 env:
   AWS_REGION: ap-northeast-2
